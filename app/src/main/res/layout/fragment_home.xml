@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5">
+        <AutoCompleteTextView
+            android:id="@+id/attvSearchCountry"
+            android:hint="Select a country"
+            android:completionThreshold="1"
+            android:textSize="16dp"
+            android:paddingRight="20dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imSearch"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_search"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvLocationCurrent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VietNam"
+            android:textSize="50dp" />
+
+        <TextView
+            android:id="@+id/tvCurrentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="7/8"
+            android:textSize="40dp" />
+
+        <ImageView
+            android:id="@+id/imCurrentWeather"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/icon_clouds" />
+
+        <ImageView
+            android:id="@+id/imWeather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/tvDes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="brocken clouds"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/tvTemperatureCurrent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="18 C"
+            android:textSize="40dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imPressureCurrent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_temperature" />
+
+            <TextView
+                android:id="@+id/tvPressureCurrent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imPressureCurrent"
+                android:text="1006hPa"
+                android:textSize="20dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imHumidityCurrent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_wet" />
+
+            <TextView
+                android:id="@+id/tvHumidityCurrent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/imHumidityCurrent"
+                android:text="88%"
+                android:textSize="20dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imWindCurrent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_wind" />
+
+            <TextView
+                android:id="@+id/tvWindCurrent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/imWindCurrent"
+                android:text="88 m/s"
+                android:textSize="20dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="30dp"
+            android:text="Next 5 days" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvDaysOfWeek1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="THU" />
+
+            <TextView
+                android:id="@+id/tvNext1DaysDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00/00" />
+
+            <ImageView
+                android:id="@+id/imNext1DaysWeather"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_clouds" />
+
+            <TextView
+                android:id="@+id/tvTempNext1Days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18 C" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvDaysOfWeek2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FRI" />
+
+            <TextView
+                android:id="@+id/tvNext2DaysDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00/00" />
+
+            <ImageView
+                android:id="@+id/imNext2DaysWeather"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_clouds" />
+
+            <TextView
+                android:id="@+id/tvTempNext2Days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18 C" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvDaysOfWeek3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SAT" />
+
+            <TextView
+                android:id="@+id/tvNext3DaysDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00/00" />
+
+            <ImageView
+                android:id="@+id/imNext3DaysWeather"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_clouds" />
+
+            <TextView
+                android:id="@+id/tvTempNext3Days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18 C" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvDaysOfWeek4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SUN" />
+
+            <TextView
+                android:id="@+id/tvNext4DaysDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00/00" />
+
+            <ImageView
+                android:id="@+id/imNext4DaysWeather"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_clouds" />
+
+            <TextView
+                android:id="@+id/tvTempNext4Days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18 C" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvDaysOfWeek5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MON" />
+
+            <TextView
+                android:id="@+id/tvNext5DaysDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00/00" />
+
+            <ImageView
+                android:id="@+id/imNext5DaysWeather"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_clouds" />
+
+            <TextView
+                android:id="@+id/tvTempNext5Days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18 C" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
