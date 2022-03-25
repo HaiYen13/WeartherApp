@@ -1,4 +1,4 @@
-package com.yenvth.myweather.mfivenextdaysmodels;
+package com.yenvth.myweather.models.currentweather;
 
 public class CoordModel {
     private float lon;

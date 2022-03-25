@@ -1,4 +1,4 @@
-package com.yenvth.myweather.models;
+package com.yenvth.myweather.models.currentweather;
 
 public class WeatherChildModel {
     private int id;

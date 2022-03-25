@@ -1,4 +1,4 @@
-package com.yenvth.myweather.mfivenextdaysmodels;
+package com.yenvth.myweather.models.mfivenextdaysmodels;
 
 import java.util.List;
 

@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
@@ -25,8 +24,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yenvth.myweather.R;
 import com.yenvth.myweather.citylist.CityListModel;
-import com.yenvth.myweather.mfivenextdaysmodels.NextFiveDaysWeatherModel;
-import com.yenvth.myweather.models.CityWeatherModel;
+import com.yenvth.myweather.models.History;
+import com.yenvth.myweather.models.mfivenextdaysmodels.NextFiveDaysWeatherModel;
+import com.yenvth.myweather.models.currentweather.CityWeatherModel;
+import com.yenvth.myweather.sqlite.SQLiteHelper;
 import com.yenvth.myweather.utils.CityList;
 import com.yenvth.myweather.utils.DateUtils;
 import com.yenvth.myweather.utils.WeatherUtils;
@@ -35,6 +36,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
+    SQLiteHelper sqLiteHelper;
+
     //Todo: Thời tiết hiện tại
     private TextView tvTemperatureCurrent;
     private TextView tvLocationCurrent;
@@ -87,7 +90,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
+        sqLiteHelper = new SQLiteHelper(getContext());
         initViews(view);        //Find view by id
         initAction();          // Xử lý logic, ...\
 
@@ -109,6 +112,12 @@ public class HomeFragment extends Fragment {
     private void initViews(View view){
         tvTemperatureCurrent = view.findViewById(R.id.tvTemperatureCurrent);
         tvLocationCurrent = view.findViewById(R.id.tvLocationCurrent);
+        tvLocationCurrent.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                sqLiteHelper.deleteAll();
+            }
+        });
         tvDes = view.findViewById(R.id.tvDes);
         tvPressureCurrent = view.findViewById(R.id.tvPressureCurrent);
         tvHumidityCurrent = view.findViewById(R.id.tvHumidityCurrent);
@@ -180,6 +189,19 @@ public class HomeFragment extends Fragment {
                         currentDate = DateUtils.getDateFromTimestamp(nextFiveDaysWeatherModel.getList().get(0).getDt() * 1000, DateUtils.FORMAT_6);
                         tvCurrentDate.setText(currentDate);
                         imCurrentWeather.setImageResource(WeatherUtils.getIcon(cityWeatherModel.getList().get(0).getWeather().get(0).getIcon()));
+
+
+                        History history = new History(
+                                cityWeatherModel.getList().get(0).getName(),
+                                DateUtils.getDateFromTimestamp(nextFiveDaysWeatherModel.getList().get(0).getDt() * 1000, DateUtils.FORMAT_6),
+                                DateUtils.getDateFromTimestamp(nextFiveDaysWeatherModel.getList().get(0).getDt() * 1000, DateUtils.FORMAT_3),
+                                cityWeatherModel.getList().get(0).getWeather().get(0).getIcon(),
+                                cityWeatherModel.getList().get(0).getWeather().get(0).getDescription(),
+                                cityWeatherModel.getList().get(0).getMain().getTemp(),
+                                cityWeatherModel.getList().get(0).getMain().getHumidity(),
+                                cityWeatherModel.getList().get(0).getMain().getHumidity()
+                                );
+                        sqLiteHelper.insertHistory(history);
                     }
                 },
                 new Response.ErrorListener() {

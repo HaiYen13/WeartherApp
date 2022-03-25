@@ -1,4 +1,4 @@
-package com.yenvth.myweather.mfivenextdaysmodels;
+package com.yenvth.myweather.models.mfivenextdaysmodels;
 
 public class WeatherModel {
     private long id;
