@@ -1,4 +1,4 @@
-package com.yenvth.myweather.citylist;
+package com.yenvth.myweather.models.citylist;
 
 public class CityListModel {
     private long id;

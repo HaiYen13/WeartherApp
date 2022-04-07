@@ -1,5 +1,6 @@
 package com.yenvth.myweather.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,7 +24,8 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yenvth.myweather.R;
-import com.yenvth.myweather.citylist.CityListModel;
+import com.yenvth.myweather.main.MainActivity;
+import com.yenvth.myweather.models.citylist.CityListModel;
 import com.yenvth.myweather.models.History;
 import com.yenvth.myweather.models.mfivenextdaysmodels.NextFiveDaysWeatherModel;
 import com.yenvth.myweather.models.currentweather.CityWeatherModel;
@@ -37,6 +39,8 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     SQLiteHelper sqLiteHelper;
+//    private ISendDataListener mIsendDataListerer;
+
 
     //Todo: Thời tiết hiện tại
     private TextView tvTemperatureCurrent;
@@ -106,6 +110,9 @@ public class HomeFragment extends Fragment {
         autoCompleteTextView.setAdapter(arrayAdapter);
 
         getCurrentWeatherData("Saigon");
+
+
+
         return view;
     }
 
@@ -160,11 +167,11 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 String cityName = autoCompleteTextView.getText().toString();
                 getCurrentWeatherData(cityName);
+//                sendDatatoAtherFragment();
                 autoCompleteTextView.setText("");       //Clear tìm kiếm
             }
         });
     }
-
     public void getCurrentWeatherData(String data) {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         String ulrCurrent = "https://api.openweathermap.org/data/2.5/find?q=" + data + "&units=metric&appid=a34d6ef850a2d943daa1ca646328a3f0&lang=en";
@@ -181,6 +188,7 @@ public class HomeFragment extends Fragment {
                         NextFiveDaysWeatherModel nextFiveDaysWeatherModel = gson.fromJson(response, NextFiveDaysWeatherModel.class);
 
                         tvTemperatureCurrent.setText(cityWeatherModel.getList().get(0).getMain().getTemp() + " °C");
+                        Log.d("lay duoc ket qua temp", cityWeatherModel.getList().get(0).getMain().getTemp() + " °C");
                         tvLocationCurrent.setText(cityWeatherModel.getList().get(0).getName() + "");
                         tvDes.setText(cityWeatherModel.getList().get(0).getWeather().get(0).getDescription() + "");
                         tvPressureCurrent.setText(cityWeatherModel.getList().get(0).getMain().getPressure() + " hPa");
@@ -200,7 +208,7 @@ public class HomeFragment extends Fragment {
                                 cityWeatherModel.getList().get(0).getMain().getTemp(),
                                 cityWeatherModel.getList().get(0).getMain().getHumidity(),
                                 cityWeatherModel.getList().get(0).getMain().getHumidity()
-                                );
+                        );
                         sqLiteHelper.insertHistory(history);
                     }
                 },
@@ -262,4 +270,23 @@ public class HomeFragment extends Fragment {
         requestQueue.add(currentWeatherRequest);
         requestQueue.add(nextFiveDaysWeatherRequest);
     }
+
+//    private void sendDatatoAtherFragment() {
+//        String nameOfCity = autoCompleteTextView.getText().toString();
+//        mIsendDataListerer.sentData(nameOfCity);
+//
+//    }
+//
+//    @Override
+//    public void onAttach(@NonNull Context context) {
+//        super.onAttach(context);
+//        mIsendDataListerer = (ISendDataListener) getActivity();
+//    }
+//    public interface ISendDataListener{
+//        void sentData(String nameOfCity);
+//    }
+
+
+
+    
 }

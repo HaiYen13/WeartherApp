@@ -18,7 +18,7 @@ import com.yenvth.myweather.sqlite.SQLiteHelper;
 import java.util.ArrayList;
 
 public class HistoryFragment extends Fragment {
-//    private RecyclerView rvHis;
+    //    private RecyclerView rvHis;
 //    private HistoryAdapter adapter;
 //    private ArrayList<String> dataList;
 //    @Nullable

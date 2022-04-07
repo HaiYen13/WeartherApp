@@ -1,8 +1,6 @@
 package com.yenvth.myweather.main;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,19 +8,15 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.yenvth.myweather.R;
-import com.yenvth.myweather.citylist.CityListModel;
-import com.yenvth.myweather.utils.CityList;
+import com.yenvth.myweather.charts.ForecastFragment;
+import com.yenvth.myweather.home.HomeFragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
     private TabLayout mTablayout;
     private ViewPager mViewPager;
     //Todo: thanh Search
+
 
 
     @Override
@@ -34,7 +28,14 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mViewPager.setAdapter(viewPagerAdapter);
+        mViewPager.setOffscreenPageLimit(3);
         mTablayout.setupWithViewPager(mViewPager);
 
     }
+
+//    @Override
+//    public void sentData(String nameOfCity) {
+//        ForecastFragment forecastFragment = (ForecastFragment) getSupportFragmentManager().findFragmentById(R.id.content_forecastFragment);
+//        forecastFragment.receiverDataFromFragment(nameOfCity);
+//    }
 }

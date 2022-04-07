@@ -1,96 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="30dp">
-    <RelativeLayout
+    android:layout_height="100dp"
+    android:orientation="horizontal"
+    android:weightSum="5">
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:gravity="center">
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imgHis"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_clouds">
 
-        <LinearLayout
-            android:id="@+id/lineImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/imgHis"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/icon_clouds" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/line2"
-            android:layout_toRightOf="@+id/lineImage"
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvLocationHistory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30dp"
-                android:text="VietNam"/>
-            <TextView
-                android:id="@+id/tvDesHis"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="fog"
-                android:textSize="20dp"/>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/tvTempHis"
-                    android:layout_margin="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:text="20 C"/>
-                <TextView
-                    android:id="@+id/tvPresHis"
-                    android:layout_margin="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0000hPa"
-                    android:textSize="20dp"/>
-                <TextView
-                    android:id="@+id/tvHumiHis"
-                    android:layout_margin="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="000%"
-                    android:textSize="20dp"/>
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_toRightOf="@+id/line2"
+        </ImageView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_weight="3"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvLocationHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text="Ha Noi"
+            android:textSize="30dp"/>
+        <TextView
+            android:id="@+id/tvDesHis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fog"
+            android:textSize="20dp"/>
+        <LinearLayout
+            android:weightSum="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tvTempHis"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="16 C"/>
+            <TextView
+                android:id="@+id/tvPresHis"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10000hPa"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/tvHumiHis"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="93 %"
+                android:textSize="20dp"/>
+        </LinearLayout>
 
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:gravity="center"
+    >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            >
             <TextView
                 android:id="@+id/tvDateHis"
-                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="00/00"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:text="07/08"/>
             <TextView
                 android:id="@+id/tvTimeHis"
-                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00:00"
-                android:textSize="20dp" />
+                android:text="14:00"
+                android:textSize="20dp"/>
         </LinearLayout>
-    </RelativeLayout>
-</RelativeLayout>
+
+
+
+    </LinearLayout>
+</LinearLayout>
