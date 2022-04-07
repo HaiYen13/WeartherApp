@@ -10,7 +10,7 @@ public class WeatherModel {
     private long dt;
     private WindModel wind;
     private SysModel sys;
-    private int rain;
+
     private int snow;
     private CloudsModel clouds;
     private List<WeatherChildModel> weather;
@@ -70,15 +70,7 @@ public class WeatherModel {
     public void setSys(SysModel sys) {
         this.sys = sys;
     }
-
-    public int getRain() {
-        return rain;
-    }
-
-    public void setRain(int rain) {
-        this.rain = rain;
-    }
-
+    
     public int getSnow() {
         return snow;
     }

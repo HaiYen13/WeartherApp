@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yenvth.myweather.R;
+import com.yenvth.myweather.charts.ForecastFragment;
 import com.yenvth.myweather.main.MainActivity;
 import com.yenvth.myweather.models.citylist.CityListModel;
 import com.yenvth.myweather.models.History;
@@ -39,7 +40,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     SQLiteHelper sqLiteHelper;
-//    private ISendDataListener mIsendDataListerer;
+   private ISendDataListener mIsendDataListerer;
 
 
     //Todo: Thời tiết hiện tại
@@ -89,6 +90,11 @@ public class HomeFragment extends Fragment {
     private AutoCompleteTextView autoCompleteTextView;
     private ImageView imSearch;
     private IItemClickListener iItemClickListener;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mIsendDataListerer = (ISendDataListener) getActivity();
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -167,7 +173,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 String cityName = autoCompleteTextView.getText().toString();
                 getCurrentWeatherData(cityName);
-//                sendDatatoAtherFragment();
+                sendDatatoAtherFragment();
                 autoCompleteTextView.setText("");       //Clear tìm kiếm
             }
         });
@@ -180,7 +186,7 @@ public class HomeFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("ketqua", response);
+                        Log.d("CurrentWeather", response);
                         //Todo: Mapping sang model
                         Gson gson = new Gson(); //khởi  tạo đối tượng
                         CityWeatherModel cityWeatherModel = gson.fromJson(response, CityWeatherModel.class);// Convert từ string sang object
@@ -271,20 +277,16 @@ public class HomeFragment extends Fragment {
         requestQueue.add(nextFiveDaysWeatherRequest);
     }
 
-//    private void sendDatatoAtherFragment() {
-//        String nameOfCity = autoCompleteTextView.getText().toString();
-//        mIsendDataListerer.sentData(nameOfCity);
-//
-//    }
-//
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//        mIsendDataListerer = (ISendDataListener) getActivity();
-//    }
-//    public interface ISendDataListener{
-//        void sentData(String nameOfCity);
-//    }
+    private void sendDatatoAtherFragment() {
+        String nameOfCity = autoCompleteTextView.getText().toString().trim();
+        mIsendDataListerer.sendData(nameOfCity);
+
+    }
+
+
+    public interface ISendDataListener{
+        void sendData(String nameOfCity);
+    }
 
 
 

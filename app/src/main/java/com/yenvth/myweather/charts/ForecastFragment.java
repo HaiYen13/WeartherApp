@@ -50,9 +50,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import static com.yenvth.myweather.R.id.autoComplete;
-import static com.yenvth.myweather.R.id.forever;
-import static com.yenvth.myweather.R.id.tvCityName;
+
 
 public class ForecastFragment extends Fragment implements OnChartValueSelectedListener
 {
@@ -89,15 +87,13 @@ public class ForecastFragment extends Fragment implements OnChartValueSelectedLi
         //TODO: set up ten thanh pho va get du lieu
         tvCityName.setText("City: " + sharedPreferences.getString("name","saigon"));
         getThreeHour("saigon");
-
-
-
         return view;
     }
     //lay data
-    public void getThreeHour(String threeHoursData) {
+    public void getThreeHour(String cityName) {
+
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        String threeHoursUrl = "https://api.openweathermap.org/data/2.5/forecast?appid=211ff006de9aba9ddd122331f87cdf8b&q=" + threeHoursData + "&cnt=6&units=metric";
+        String threeHoursUrl = "https://api.openweathermap.org/data/2.5/forecast?appid=211ff006de9aba9ddd122331f87cdf8b&q=" + cityName + "&cnt=6&units=metric";
         StringRequest threehoursRequest = new StringRequest(Request.Method.GET, threeHoursUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -105,7 +101,9 @@ public class ForecastFragment extends Fragment implements OnChartValueSelectedLi
                 Gson gson = new Gson(); // Khởi tạo đối tượng mới
                 CityWeatherModel cityWeatherModel = gson.fromJson(response, CityWeatherModel.class);
 
+                tvCityName.setText(cityWeatherModel.getCity().getName() +"");
 
+                Log.d("ten thanh pho bieu do",cityWeatherModel.getCity().getName() +"");
                 tempOfCities = cityWeatherModel.getList().size();
                 for(int i =0; i< tempOfCities; i++){
                     if (cityWeatherModel.getList().get(i).getMain() != null) {
@@ -212,7 +210,8 @@ public class ForecastFragment extends Fragment implements OnChartValueSelectedLi
 //        xAxis.setAxisMaximum(data.getXMax()+ 0.25f);
         return d;
     }
-    public void receiverDataFromFragment(String nameOfCity){
+    //TODO: Ham nhan data tu activity
+    public void receiveDataFromHomeFragment(String nameOfCity){
         tvCityName.setText(nameOfCity);
     }
 

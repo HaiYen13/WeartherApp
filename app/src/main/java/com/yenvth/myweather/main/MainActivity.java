@@ -12,7 +12,7 @@ import com.yenvth.myweather.R;
 import com.yenvth.myweather.charts.ForecastFragment;
 import com.yenvth.myweather.home.HomeFragment;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements HomeFragment.ISendDataListener {
     private TabLayout mTablayout;
     private ViewPager mViewPager;
     //Todo: thanh Search
@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity  {
 
     }
 
-//    @Override
-//    public void sentData(String nameOfCity) {
-//        ForecastFragment forecastFragment = (ForecastFragment) getSupportFragmentManager().findFragmentById(R.id.content_forecastFragment);
-//        forecastFragment.receiverDataFromFragment(nameOfCity);
-//    }
+    @Override
+    public void sendData(String nameOfCity) {
+        ForecastFragment forecastFragment = (ForecastFragment) getSupportFragmentManager().findFragmentById(R.id.content_forecastFragment);
+        forecastFragment.receiveDataFromHomeFragment(nameOfCity);
+    }
 }

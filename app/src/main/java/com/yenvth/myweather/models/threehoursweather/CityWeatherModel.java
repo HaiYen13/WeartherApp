@@ -40,4 +40,12 @@ public class CityWeatherModel {
     public void setList(List<WeatherModel> list) {
         this.list = list;
     }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
 }
