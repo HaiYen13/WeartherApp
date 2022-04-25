@@ -1,6 +1,7 @@
 package com.yenvth.myweather.home;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,8 +41,6 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     SQLiteHelper sqLiteHelper;
-   private ISendDataListener mIsendDataListerer;
-
 
     //Todo: Thời tiết hiện tại
     private TextView tvTemperatureCurrent;
@@ -52,6 +51,7 @@ public class HomeFragment extends Fragment {
     private TextView tvWindCurrent;
     private TextView tvCurrentDate;
     private String currentDate;
+    private long cityId;
 
     //Todo: nhiệt độ 5 ngày tiếp theo
     private TextView tvTempNext1Days;
@@ -89,12 +89,7 @@ public class HomeFragment extends Fragment {
 
     private AutoCompleteTextView autoCompleteTextView;
     private ImageView imSearch;
-    private IItemClickListener iItemClickListener;
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        mIsendDataListerer = (ISendDataListener) getActivity();
-    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -117,20 +112,12 @@ public class HomeFragment extends Fragment {
 
         getCurrentWeatherData("Saigon");
 
-
-
         return view;
     }
 
     private void initViews(View view){
         tvTemperatureCurrent = view.findViewById(R.id.tvTemperatureCurrent);
         tvLocationCurrent = view.findViewById(R.id.tvLocationCurrent);
-        tvLocationCurrent.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                sqLiteHelper.deleteAll();
-            }
-        });
         tvDes = view.findViewById(R.id.tvDes);
         tvPressureCurrent = view.findViewById(R.id.tvPressureCurrent);
         tvHumidityCurrent = view.findViewById(R.id.tvHumidityCurrent);
@@ -173,7 +160,6 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 String cityName = autoCompleteTextView.getText().toString();
                 getCurrentWeatherData(cityName);
-                sendDatatoAtherFragment();
                 autoCompleteTextView.setText("");       //Clear tìm kiếm
             }
         });
@@ -196,6 +182,7 @@ public class HomeFragment extends Fragment {
                         tvTemperatureCurrent.setText(cityWeatherModel.getList().get(0).getMain().getTemp() + " °C");
                         Log.d("lay duoc ket qua temp", cityWeatherModel.getList().get(0).getMain().getTemp() + " °C");
                         tvLocationCurrent.setText(cityWeatherModel.getList().get(0).getName() + "");
+                        cityId = cityWeatherModel.getList().get(0).getId();
                         tvDes.setText(cityWeatherModel.getList().get(0).getWeather().get(0).getDescription() + "");
                         tvPressureCurrent.setText(cityWeatherModel.getList().get(0).getMain().getPressure() + " hPa");
                         tvHumidityCurrent.setText(cityWeatherModel.getList().get(0).getMain().getHumidity() + " %");
@@ -215,6 +202,8 @@ public class HomeFragment extends Fragment {
                                 cityWeatherModel.getList().get(0).getMain().getHumidity(),
                                 cityWeatherModel.getList().get(0).getMain().getHumidity()
                         );
+                        MainActivity.cityId = cityWeatherModel.getList().get(0).getId();
+                        MainActivity.city = cityWeatherModel.getList().get(0).getName();
                         sqLiteHelper.insertHistory(history);
                     }
                 },
@@ -276,19 +265,4 @@ public class HomeFragment extends Fragment {
         requestQueue.add(currentWeatherRequest);
         requestQueue.add(nextFiveDaysWeatherRequest);
     }
-
-    private void sendDatatoAtherFragment() {
-        String nameOfCity = autoCompleteTextView.getText().toString().trim();
-        mIsendDataListerer.sendData(nameOfCity);
-
-    }
-
-
-    public interface ISendDataListener{
-        void sendData(String nameOfCity);
-    }
-
-
-
-    
 }

@@ -14,28 +14,30 @@ import java.util.List;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter{
     List<Fragment> list;
-    public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
-        super(fm, behavior);
+    public ViewPagerAdapter(@NonNull FragmentManager fm, List<Fragment> list) {
+        super(fm);
+        this.list = list;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
-            case 0:
-                return new HomeFragment();
-            case 1:
-                return new ForecastFragment();
-            case 2:
-                return new HistoryFragment();
-            default:
-                return new HomeFragment();
-        }
+        return list.get(position);
+//        switch (position){
+//            case 0:
+//                return new HomeFragment();
+//            case 1:
+//                return new ForecastFragment();
+//            case 2:
+//                return new HistoryFragment();
+//            default:
+//                return new HomeFragment();
+//        }
 }
 
     @Override
     public int getCount() {
-        return 3;
+        return list.size();
     }
     @Nullable
     @Override

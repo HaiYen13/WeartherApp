@@ -57,11 +57,6 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_history, container, false);
         mRcvData = v.findViewById(R.id.rvHis);
-        getData(); //TODO: lay du lieu tu SQL cho mListHistory
-        mAdapter = new HistoryAdapter(getContext(), mListHistory);
-        mRcvData.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        mRcvData.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
         return v;
 
 
@@ -70,5 +65,10 @@ public class HistoryFragment extends Fragment {
     public void getData(){
         sqLiteHelper = new SQLiteHelper(getActivity());
         mListHistory = sqLiteHelper.getArrayHistory();
+
+        mAdapter = new HistoryAdapter(getContext(), mListHistory);
+        mRcvData.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        mRcvData.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 }

@@ -51,21 +51,18 @@ import java.util.Date;
 import java.util.List;
 
 
-
-public class ForecastFragment extends Fragment implements OnChartValueSelectedListener
-{
+public class ForecastFragment extends Fragment implements OnChartValueSelectedListener {
 
     private static String TAG = "ForecastFragment";
     private static int COUNT = 5;
     private CombinedChart mChart;
     private TextView tvCityName;
-    SharedPreferences sharedPreferences;
     private int tempOfCities;
     private ArrayList<Float> temperatures = new ArrayList<>();
     private ArrayList<String> dates = new ArrayList<>();
     private ArrayList<String> times = new ArrayList<>();
 
-    
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -81,19 +78,20 @@ public class ForecastFragment extends Fragment implements OnChartValueSelectedLi
         mChart.setHighlightFullBarEnabled(false);
         mChart.setOnChartValueSelectedListener(this);
 
-        //TODO: tao doi tuong sharePreferences de lay ten thanh pho khi ta search o MainActiviti
-        sharedPreferences = getActivity().getSharedPreferences("search", Context.MODE_PRIVATE);
-
-        //TODO: set up ten thanh pho va get du lieu
-        tvCityName.setText("City: " + sharedPreferences.getString("name","saigon"));
-        getThreeHour("saigon");
         return view;
     }
+
     //lay data
-    public void getThreeHour(String cityName) {
+    public void getThreeHour(long cityId, String cityName) {
+        dates.clear();// clear tránh trường hợp add vào list rồi lại add tiếp
+        times.clear();
+        temperatures.clear();
+
+        //TODO: set up ten thanh pho va get du lieu
+        tvCityName.setText("City: " + cityName);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        String threeHoursUrl = "https://api.openweathermap.org/data/2.5/forecast?appid=211ff006de9aba9ddd122331f87cdf8b&q=" + cityName + "&cnt=6&units=metric";
+        String threeHoursUrl = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityId + "&appid=211ff006de9aba9ddd122331f87cdf8b&cnt=6&units=metric";
         StringRequest threehoursRequest = new StringRequest(Request.Method.GET, threeHoursUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -101,24 +99,25 @@ public class ForecastFragment extends Fragment implements OnChartValueSelectedLi
                 Gson gson = new Gson(); // Khởi tạo đối tượng mới
                 CityWeatherModel cityWeatherModel = gson.fromJson(response, CityWeatherModel.class);
 
-                tvCityName.setText(cityWeatherModel.getCity().getName() +"");
+                tvCityName.setText(cityWeatherModel.getCity().getName() + "");
 
-                Log.d("ten thanh pho bieu do",cityWeatherModel.getCity().getName() +"");
+
+                Log.d("ten thanh pho bieu do", cityWeatherModel.getCity().getName() + "");
                 tempOfCities = cityWeatherModel.getList().size();
-                for(int i =0; i< tempOfCities; i++){
+                for (int i = 0; i < tempOfCities; i++) {
                     if (cityWeatherModel.getList().get(i).getMain() != null) {
                         temperatures.add((float) cityWeatherModel.getList().get(i).getMain().getTemp());
                     }
                 }
-                for(int i = 0; i < tempOfCities; i++){
-                    if(cityWeatherModel.getList().get(i).getDt_txt() == null){
+                for (int i = 0; i < tempOfCities; i++) {
+                    if (cityWeatherModel.getList().get(i).getDt_txt() == null) {
                         continue;
                     }
                     dates.add(cityWeatherModel.getList().get(i).getDt_txt());
                     Calendar c = getTime(dates.get(i));
-                    dates.set(i, c.get(Calendar.DAY_OF_MONTH)+"/"+c.get(Calendar.MONTH)+1);
+                    dates.set(i, c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.MONTH) + 1);
 
-                    times.add(c.get(Calendar.HOUR_OF_DAY)+":"+ c.get(Calendar.MINUTE));
+                    times.add(c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE));
 
                 }
 
@@ -141,6 +140,7 @@ public class ForecastFragment extends Fragment implements OnChartValueSelectedLi
 
 
     }
+
     public static Calendar getTime(String time) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
 
@@ -154,14 +154,15 @@ public class ForecastFragment extends Fragment implements OnChartValueSelectedLi
         }
         return calendar;
     }
+
     //TODO: tao bieu do duong Line Chart
-    private LineData generateLineChart(){
+    private LineData generateLineChart() {
 
         LineData d = new LineData();
 
         ArrayList<Entry> entries = new ArrayList<Entry>();
-        for(int i =0; i< COUNT ; i++){
-            entries.add(new Entry(1f*i,temperatures.get(i)));
+        for (int i = 0; i < COUNT; i++) {
+            entries.add(new Entry(1f * i, temperatures.get(i)));
         }
         LineDataSet set = new LineDataSet(entries, "temperature");
         set.setColor(Color.RED);
@@ -190,10 +191,10 @@ public class ForecastFragment extends Fragment implements OnChartValueSelectedLi
 
         //TODO: tao nhan cho truc hoanh
         final List<String> xLabel = new ArrayList<>();
-        for(int i =0; i< COUNT; i++){
-            if(times.get(i).equals("0:0")&& times.get(i+1).equals("15:00")){
+        for (int i = 0; i < COUNT; i++) {
+            if (times.get(i).equals("0:0") && times.get(i + 1).equals("15:00")) {
                 xLabel.add("12:00");
-            }else
+            } else
                 xLabel.add(times.get(i));
         }
         //TODO: tao truc hoanh
@@ -210,11 +211,6 @@ public class ForecastFragment extends Fragment implements OnChartValueSelectedLi
 //        xAxis.setAxisMaximum(data.getXMax()+ 0.25f);
         return d;
     }
-    //TODO: Ham nhan data tu activity
-    public void receiveDataFromHomeFragment(String nameOfCity){
-        tvCityName.setText(nameOfCity);
-    }
-
 
     @Override
     public void onValueSelected(Entry e, Highlight h) {
