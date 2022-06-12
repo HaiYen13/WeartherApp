@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:orientation="horizontal"
+    android:background="@drawable/gradient"
     android:weightSum="5">
     <LinearLayout
         android:layout_weight="1"
@@ -27,6 +28,7 @@
         android:layout_height="100dp"
         android:orientation="vertical">
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/tvLocationHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,6 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="fog"
+            android:textColor="@color/white"
             android:textSize="20dp"/>
         <LinearLayout
             android:weightSum="3"
@@ -48,6 +51,7 @@
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:textSize="20dp"
                 android:text="16 C"/>
             <TextView
@@ -56,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10000hPa"
+                android:textColor="@color/white"
                 android:textSize="20dp"/>
             <TextView
                 android:id="@+id/tvHumiHis"
@@ -63,6 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="93 %"
+                android:textColor="@color/white"
                 android:textSize="20dp"/>
         </LinearLayout>
 
@@ -87,12 +93,14 @@
                 android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:textSize="20dp"
                 android:text="07/08"/>
             <TextView
                 android:id="@+id/tvTimeHis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="14:00"
                 android:textSize="20dp"/>
         </LinearLayout>

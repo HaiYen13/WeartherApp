@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@drawable/weather_background">
 
     <LinearLayout
         android:padding="5dp"
@@ -16,9 +17,11 @@
             android:id="@+id/attvSearchCountry"
             android:hint="Select a country"
             android:completionThreshold="1"
+            android:completionHintView="@color/white"
             android:textSize="16dp"
+            android:textColorHint="@color/white"
             android:paddingRight="20dp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_weight="4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
@@ -40,6 +43,7 @@
             android:id="@+id/tvLocationCurrent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="VietNam"
             android:textSize="50dp" />
 
@@ -47,6 +51,7 @@
             android:id="@+id/tvCurrentDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_marginTop="10dp"
             android:text="7/8"
             android:textSize="40dp" />
@@ -70,6 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="brocken clouds"
+            android:textColor="@color/white"
             android:textSize="30dp" />
 
         <TextView
@@ -77,6 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:textColor="@color/white"
             android:text="18 C"
             android:textSize="40dp" />
     </LinearLayout>
@@ -101,6 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:textColor="@color/white"
                 android:layout_toRightOf="@+id/imPressureCurrent"
                 android:text="1006hPa"
                 android:textSize="20dp" />
@@ -122,6 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:textColor="@color/white"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@+id/imHumidityCurrent"
                 android:text="88%"
@@ -140,6 +149,7 @@
                 android:src="@drawable/icon_wind" />
 
             <TextView
+                android:textColor="@color/white"
                 android:id="@+id/tvWindCurrent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -160,6 +170,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginTop="30dp"
+            android:textColor="@color/white"
             android:text="Next 5 days" />
     </RelativeLayout>
 
@@ -185,12 +196,14 @@
                 android:id="@+id/tvDaysOfWeek1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="THU" />
 
             <TextView
                 android:id="@+id/tvNext1DaysDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="00/00" />
 
             <ImageView
@@ -202,6 +215,7 @@
             <TextView
                 android:id="@+id/tvTempNext1Days"
                 android:layout_width="wrap_content"
+                android:textColor="@color/white"
                 android:layout_height="wrap_content"
                 android:text="18 C" />
 
@@ -217,12 +231,14 @@
                 android:id="@+id/tvDaysOfWeek2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="FRI" />
 
             <TextView
                 android:id="@+id/tvNext2DaysDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="00/00" />
 
             <ImageView
@@ -235,6 +251,7 @@
                 android:id="@+id/tvTempNext2Days"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="18 C" />
 
         </LinearLayout>
@@ -246,6 +263,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:textColor="@color/white"
                 android:id="@+id/tvDaysOfWeek3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -255,6 +273,7 @@
                 android:id="@+id/tvNext3DaysDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="00/00" />
 
             <ImageView
@@ -267,6 +286,7 @@
                 android:id="@+id/tvTempNext3Days"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="18 C" />
 
         </LinearLayout>
@@ -281,12 +301,15 @@
                 android:id="@+id/tvDaysOfWeek4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="SUN" />
 
             <TextView
                 android:id="@+id/tvNext4DaysDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+
                 android:text="00/00" />
 
             <ImageView
@@ -299,6 +322,7 @@
                 android:id="@+id/tvTempNext4Days"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="18 C" />
 
         </LinearLayout>
@@ -313,12 +337,14 @@
                 android:id="@+id/tvDaysOfWeek5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MON" />
+                android:text="MON"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/tvNext5DaysDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="00/00" />
 
             <ImageView
@@ -331,6 +357,7 @@
                 android:id="@+id/tvTempNext5Days"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="18 C" />
 
         </LinearLayout>
