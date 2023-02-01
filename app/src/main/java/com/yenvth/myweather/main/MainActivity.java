@@ -5,15 +5,13 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.yenvth.myweather.R;
-import com.yenvth.myweather.charts.ForecastFragment;
-import com.yenvth.myweather.history.HistoryFragment;
-import com.yenvth.myweather.home.HomeFragment;
-import com.yenvth.myweather.models.History;
+import com.yenvth.myweather.ui.charts.ForecastFragment;
+import com.yenvth.myweather.ui.history.HistoryFragment;
+import com.yenvth.myweather.ui.home.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;

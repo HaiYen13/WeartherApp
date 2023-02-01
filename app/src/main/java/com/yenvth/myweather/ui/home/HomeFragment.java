@@ -1,7 +1,5 @@
-package com.yenvth.myweather.home;
+package com.yenvth.myweather.ui.home;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,7 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yenvth.myweather.R;
-import com.yenvth.myweather.charts.ForecastFragment;
+import com.yenvth.myweather.api.ApiService;
 import com.yenvth.myweather.main.MainActivity;
 import com.yenvth.myweather.models.citylist.CityListModel;
 import com.yenvth.myweather.models.History;

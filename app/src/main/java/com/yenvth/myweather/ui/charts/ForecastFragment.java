@@ -1,7 +1,5 @@
-package com.yenvth.myweather.charts;
+package com.yenvth.myweather.ui.charts;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,19 +27,11 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.gson.Gson;
 import com.yenvth.myweather.R;
-import com.yenvth.myweather.home.HomeFragment;
-import com.yenvth.myweather.main.MainActivity;
-import com.yenvth.myweather.models.History;
-import com.yenvth.myweather.models.mfivenextdaysmodels.NextFiveDaysWeatherModel;
 import com.yenvth.myweather.models.threehoursweather.CityWeatherModel;
-import com.yenvth.myweather.models.threehoursweather.WeatherModel;
-import com.yenvth.myweather.utils.DateUtils;
-import com.yenvth.myweather.utils.WeatherUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

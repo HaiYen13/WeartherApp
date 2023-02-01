@@ -1,4 +1,4 @@
-package com.yenvth.myweather.history;
+package com.yenvth.myweather.ui.history;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
